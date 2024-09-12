@@ -15,11 +15,20 @@ provider "azurerm" {
 
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name   = "terraform-backend-rg"
+    storage_account_name  = "terraformstate321"
+    container_name        = "tfstate"
+    key                   = "dev.terraform.tfstate"
+  }
+}
+
 resource "azurerm_api_management" "apim_example" {
   name                = "demoapim-instance"
   resource_group_name = "my_rg"
   location            = "East US"
-  sku_name            = "Basic_1"               # Adjust this based on your APIM SKU
+  sku_name            = "Standard_1"               # Adjust this based on your APIM SKU
   publisher_name      = "anvith.rai"
   publisher_email     = "anvith.rai@sonata-software.com"
   
