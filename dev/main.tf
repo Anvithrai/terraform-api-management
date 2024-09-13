@@ -28,7 +28,7 @@ resource "azurerm_api_management" "apim_example" {
   name                = "demoapim-instance"
   resource_group_name = "my_rg"
   location            = "East US"
-  sku_name            = "Basic_1"               
+  sku_name            = "Developer_1"   //this is the sku name            
   publisher_name      = "anvith.rai"
   publisher_email     = "anvith.rai@sonata-software.com"
   
