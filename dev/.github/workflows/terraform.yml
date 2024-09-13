@@ -26,17 +26,17 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
-        working-directory: ./terraform/dev  # Adjust if your main.tf is in a different location
+        working-directory: ./dev  # Adjust if your main.tf is in a different location
 
       - name: Terraform Plan
         run: terraform plan -out=plan.tfplan
-        working-directory: ./terraform/dev
+        working-directory: ./dev
 
       - name: Apply Terraform
         if: github.ref == 'refs/heads/dev'
         run: terraform apply -auto-approve plan.tfplan
-        working-directory: ./terraform/dev
+        working-directory: ./dev
 
       - name: Upload Terraform state to Blob Storage
         run: terraform apply -auto-approve
-        working-directory: ./terraform/dev
+        working-directory: ./dev
