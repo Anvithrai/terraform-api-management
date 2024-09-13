@@ -28,12 +28,12 @@ resource "azurerm_api_management" "apim_example" {
   name                = "demoapim-instance"
   resource_group_name = "my_rg"
   location            = "East US"
-  sku_name            = "Standard_1"               # Adjust this based on your APIM SKU
+  sku_name            = "Developer_1"               
   publisher_name      = "anvith.rai"
   publisher_email     = "anvith.rai@sonata-software.com"
   
   identity {
-    type = "SystemAssigned"                        # Example for system-assigned managed identity
+    type = "SystemAssigned"                        
   }
 
   tags = {
