@@ -1,14 +1,12 @@
 name: Terraform CI/CD
 
 on:
-  push:
-    branches:
-      - dev
-  workflow_dispatch:  # Allows you to manually run the workflow
+  workflow_dispatch:  # Allows manual triggering of the pipeline
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -20,7 +18,7 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./dev
+        working-directory: ./dev  # Update this if your main.tf is in a different location
 
       - name: Terraform Plan
         run: terraform plan
@@ -30,3 +28,9 @@ jobs:
         if: github.ref == 'refs/heads/dev'
         run: terraform apply -auto-approve
         working-directory: ./dev
+
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
